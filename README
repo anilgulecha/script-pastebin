@@ -1,0 +1,61 @@
+script-pastebin - A simple pastebin implementation for Trelby.
+Anil Gulecha - http://www.gulecha.org
+
+Released under the GPL3.
+
+-----
+
+This is a simple explanation of the configuration options at
+the top of index.php.
+
+SITE_BASE = The base URL of the site.
+INST_SUBDIR = The subdirectory art of the URL.
+PASTE_PATH = The directory where pastes are stored
+PASTEID_LEN = length of the paste IDs in teh URL.
+
+Example config:
+
+$SITE_BASE = "http://www.example.org/paste";
+$INST_SUBDIR = "/paste";
+$PASTE_PATH = 'content/';
+$PASTEID_LEN = 8;
+
+-----
+
+Setup:
+
+Setting up this paste is quote simple. Simply drop index.php
+and htaccess (as .htaccess) in a directory, and configure the
+above 4 parameters in the file.
+
+-----
+
+API:
+
+This pastebin implementation allows HTML formatted screenplay
+to be uploaded via the API url:
+
+$SITE_BASE/api1
+
+It expects the html contents via the "htmlscript" POST variable.
+
+The return, on Success is of the form:
+
+  VIEW,item_view_url
+  DELETE,item_deletion_url
+
+Example:
+
+  VIEW,http://www.example.org/paste/ud7edf9f
+  DELETE,http://www.trelby.org/paste/del/ud7edf9f/ftz9f4nd
+
+The return, on Failure is of the form:
+
+  FAIL,reason_for_failure
+
+Example:
+
+  FAIL,Internal server error
+
+-----
+
