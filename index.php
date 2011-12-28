@@ -153,6 +153,11 @@ function createnewapp() {
 
 // delete a paste given id, and the deleteid
 function deletepaste($pasteid, $deleteid){
+    //sanitize
+    if (ctype_alnum($pasteid) == FALSE or ctype_alnum($deleteid) == FALSE) {
+        oops();
+        return;
+    }
     global $PASTE_PATH;
     if (file_exists($PASTE_PATH.$pasteid) and file_exists($PASTE_PATH.$pasteid.$deleteid)){
         //delete the paste itself, and rename the pasteid.deleteid to _pasteid.deleteid
@@ -170,6 +175,11 @@ function deletepaste($pasteid, $deleteid){
 
 // confirm the user wants to delete the paste
 function askfordelete($pasteid, $deleteid){
+    //sanitize
+    if (ctype_alnum($pasteid) == FALSE or ctype_alnum($deleteid) == FALSE) {
+        oops();
+        return;
+    }
     global $PASTE_PATH;
     if (file_exists($PASTE_PATH.$pasteid.$deleteid) == FALSE){
         oops();
