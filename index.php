@@ -1,6 +1,7 @@
 <?php
 
 $SITE_BASE = "http://www.trelby.org/paste";
+$INST_SUBDIR = "/paste";
 $PASTE_PATH = 'content/';
 $PASTEID_LEN = 8;
 
@@ -180,7 +181,7 @@ function askfordelete($pasteid, $deleteid){
         oops();
         return;
     }
-    global $PASTE_PATH;
+    global $PASTE_PATH, $INST_SUBDIR;
     if (file_exists($PASTE_PATH.$pasteid.$deleteid) == FALSE){
         oops();
         return;
@@ -188,7 +189,7 @@ function askfordelete($pasteid, $deleteid){
 ?>
     <h1>Confirm Delete!</h1>
 <?php
-    echo "<form action='cdel/$pasteid/$deleteid' method='POST'>";
+    echo "<form action='$INST_SUBDIR/cdel/$pasteid/$deleteid' method='POST'>";
     echo "<input type='submit' value='I am sure, delete this paste!'></form>";
     showpaste($pasteid);
 }
@@ -211,12 +212,12 @@ function showpaste($id){
         return;
     }
     global $PASTE_PATH;
-    $f = fopen($PASTE_PATH.$id, "r");
-    if ($f == FALSE){
+    if (!file_exists($PASTE_PATH.$id)) {
         echo "<h1>Not found!</h1>";
         echo "<p>This paste id ($id) does not exist</p>";
         return;
     }
+    $f = fopen($PASTE_PATH.$id, "r");
     $content = fread($f,filesize($PASTE_PATH.$id));
     fclose($f);
     echo "<h2>Viewing paste: $id</h2>";
