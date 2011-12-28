@@ -126,8 +126,8 @@ function createnew() {
 // - print view/delete urls on success, and FAIL on failure.
 /*Example return on success:
 
-VIEW,http://paste.trelby.org/32e32d32
-DELETE,http://paste.trelby.org/del/32e32d32/dsd78sd8
+View URL: http://paste.trelby.org/32e32d32
+Delete URL: http://paste.trelby.org/del/32e32d32/dsd78sd8
 
 */
 function createnewapp() {
@@ -148,8 +148,8 @@ function createnewapp() {
     $deleteid = randomid();
     $f = fopen($PASTE_PATH.$pasteid.$deleteid, "w");
     fclose($f);
-    echo "VIEW,$SITE_BASE/$pasteid\n";
-    echo "DELETE,$SITE_BASE/del/$pasteid/$deleteid\n";
+    echo "View URL: $SITE_BASE/$pasteid\n";
+    echo "Delete URL: $SITE_BASE/del/$pasteid/$deleteid\n";
 }
 
 // delete a paste given id, and the deleteid

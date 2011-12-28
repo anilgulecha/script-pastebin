@@ -39,19 +39,19 @@ $SITE_BASE/api1
 
 It expects the html contents via the "htmlscript" POST variable.
 
-The return, on Success is of the form:
+The return, on Success is human readable lines:
 
-  VIEW,item_view_url
-  DELETE,item_deletion_url
+  View URL: item_view_url
+  Delete URL: item_deletion_url
 
 Example:
 
-  VIEW,http://www.example.org/paste/ud7edf9f
-  DELETE,http://www.example.org/paste/del/ud7edf9f/ftz9f4nd
+  View URL: http://www.example.org/paste/ud7edf9f
+  Delete URL: http://www.example.org/paste/del/ud7edf9f/ftz9f4nd
 
 The return, on Failure is of the form:
 
-  FAIL,reason_for_failure
+  FAIL[,][reason_for_failure]
 
 Example:
 
