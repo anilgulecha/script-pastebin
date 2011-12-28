@@ -47,7 +47,7 @@ The return, on Success is of the form:
 Example:
 
   VIEW,http://www.example.org/paste/ud7edf9f
-  DELETE,http://www.trelby.org/paste/del/ud7edf9f/ftz9f4nd
+  DELETE,http://www.example.org/paste/del/ud7edf9f/ftz9f4nd
 
 The return, on Failure is of the form:
 
