@@ -2,6 +2,7 @@ DirectoryIndex index.php index.html
 IndexIgnore *
 RewriteEngine on
 RewriteRule  ^$ index.php
+RewriteRule  ^api1$ index.php?action=newviaapp
 RewriteRule  ^([a-z0-9]*)$ index.php?action=view&id=$1
 RewriteRule  ^new/ index.php?action=new
 RewriteRule  ^del/([a-z0-9]*)/([a-z0-9]*)$ index.php?action=del&id=$1&deleteid=$2

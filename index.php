@@ -188,7 +188,7 @@ function askfordelete($pasteid, $deleteid){
 ?>
     <h1>Confirm Delete!</h1>
 <?php
-    echo "<form action='/cdel/$pasteid/$deleteid' method='POST'>";
+    echo "<form action='cdel/$pasteid/$deleteid' method='POST'>";
     echo "<input type='submit' value='I am sure, delete this paste!'></form>";
     showpaste($pasteid);
 }
