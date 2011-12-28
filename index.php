@@ -1,7 +1,7 @@
 <?php
 
-$SITE_BASE = "http://127.0.0.1";
-$PASTE_PATH = '/var/www/content/';
+$SITE_BASE = "http://www.trelby.org/paste";
+$PASTE_PATH = 'content/';
 $PASTEID_LEN = 8;
 
 function headerstuff() {
@@ -45,7 +45,7 @@ pre {text-align: left !important; letter-spacing: 0 !important; margin-top: 0px 
    <ul id="menu-home" class="menu">
 <?php
     global $SITE_BASE;
-    echo "<li><a href='$SITE_BASE'>A pastebin for screenplays.</a></li>";
+    echo "<li><a href='$SITE_BASE'>Your friendly neighbourhood screenplay pastebin.</a></li>";
 ?>
    </ul></div>
   </div>
@@ -63,8 +63,8 @@ function footerstuff() {
 function showmain() {
 ?>
 <div id="content">
- <h1>A pastebin for Screenplays</h1>
- <p>You can post to this pastebin from inside <a href="http://www.trelby.org">Trelby</a><br>or by pasting formatted screenplay text below.</p>
+ <h1>Easy screenplay viewing</h1>
+ <p>You can post here either directly from inside <a href="http://www.trelby.org">Trelby</a><br>or by pasting formatted screenplay text below.</p>
  <br>
  <form action="new/" method="POST" >
   <textarea name="script" cols="70" rows="20">Paste here!</textarea>
@@ -74,7 +74,7 @@ function showmain() {
 </div>
 
 <?php
-} 
+}
 
 //returns a random new paste ID
 function randomid() {
@@ -130,15 +130,19 @@ DELETE,http://paste.trelby.org/del/32e32d32/dsd78sd8
 
 */
 function createnewapp() {
-    global $PASTE_PATH;
+    global $PASTE_PATH, $SITE_BASE;
+    if (!isset ($_POST['htmlscript'])){
+        echo "FAIL,No data provided";
+        return;
+    }
     $script = $_POST["htmlscript"] ;
     $pasteid = randomid();
     $f = fopen($PASTE_PATH.$pasteid, "w");
     if ($f == FALSE) {
-        echo "FAIL";
+        echo "FAIL,Internal pastebin error";
         return;
     }
-    fwrite($f, $text);
+    fwrite($f, $script);
     fclose($f);
     $deleteid = randomid();
     $f = fopen($PASTE_PATH.$pasteid.$deleteid, "w");
@@ -211,6 +215,10 @@ function showpaste($id){
 
 /* Main program routine */
 
+//first get rid of any magic quotes
+foreach ($_GET as $key => &$val) $val = filter_input(INPUT_GET, $key);
+foreach ($_POST as $key => &$val) $val = filter_input(INPUT_POST, $key);
+
 if (!isset ($_GET['action']))
 {
     headerstuff();
@@ -249,7 +257,7 @@ else
             deletepaste($id, $did);
             footerstuff();
             break;
-        default: 
+        default:
             headerstuff();
 			showmain();
             footerstuff();
