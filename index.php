@@ -16,7 +16,7 @@ function headerstuff() {
 <style type="text/css">
 textarea, pre {font: 12px/14px Courier, "Courier New", monospace !important;}
 textarea {border: 1px solid lightblue; padding: 5px; }
-body {background:none;}
+body {background:none; color: #000000;}
 h1 {font-size: 1.5em; margin: 10px;}
 h2 {font-size: 1.2em; margin: 10px;}
 pre {text-align: left !important; letter-spacing: 0 !important; margin-top: 0px !important; margin-bottom: 0px !important;padding:0 !important;}
